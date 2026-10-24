@@ -1,0 +1,8 @@
+node_modules/
+data/
+cypress/screenshots/
+cypress/videos/
+tmp/
+.env
+*.log
+__pycache__/

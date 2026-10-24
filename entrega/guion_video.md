@@ -1,0 +1,16 @@
+# Guion de demostración - Hotel Aurora (2 minutos 45 segundos)
+
+Antes de grabar: ejecutar `npm start`, abrir http://127.0.0.1:4310 y tener una terminal en el repositorio. Elegir fechas futuras todavía libres. Tener el enlace de Actions de `entrega/enlaces.json` abierto. Aumentar el tamaño de letra de la terminal. Preparar las ventanas; no hace falta leer código. Si la ejecución tarda más, cortar la espera sin cambiar el resultado mostrado.
+
+| Tiempo | Qué debo decir | Qué mostrar | Acciones o comandos |
+| --- | --- | --- | --- |
+| 0:00-0:18 | “Hola, este es Hotel Aurora, mi proyecto de reservas de hotel. Lo hice con HTML, CSS y JavaScript, un servidor en Express y una base SQLite. ChatGPT y Codex me ayudaron en el desarrollo y las pruebas.” | Inicio, habitaciones, precios y disponibilidad. | Abrir la aplicación normal en el puerto 4310. |
+| 0:18-0:43 | “Elijo esta habitación, mis fechas y dos huéspedes. Aquí vemos las noches y el precio total antes de confirmar. La habitación fuera de servicio no se puede seleccionar.” | Formulario completo y cálculo. | Seleccionar Brisa, entrada futura y salida tres días después, dos huéspedes. Ver USD 255. |
+| 0:43-1:00 | “Confirmo y recibo este identificador. La reserva sí queda guardada en la base de datos; no es solo un mensaje en pantalla.” | Confirmación y consulta de la reserva en API. | Confirmar; copiar el id y abrir `/api/reservations/ID` en otra pestaña. |
+| 1:00-1:24 | “Las pruebas usan otra base. Antes de cada una se borran los datos de prueba y se cargan las mismas habitaciones. Este primer recorrido comprueba la reserva y consulta la API para revisar los datos guardados.” | Terminal con Cypress y su resultado. | Ejecutar `npm run test:e2e`. Si tarda, cortar la espera en edición. |
+| 1:24-1:45 | “El segundo recorrido intenta reservar con fechas incompletas y fechas invertidas. Comprueba el mensaje, que no se envía la solicitud y que la base sigue vacía.” | Captura de validación y resultado del recorrido 2. | Abrir `entrega/evidencias/03-validacion-fechas.png`. |
+| 1:45-2:08 | “En el tercero uso cy.intercept para responder con error 500 solo la primera vez. Compruebo la petición, el error y que el formulario conserva sus datos. Al reintentar, la API real guarda la reserva.” | Capturas del 500 y la recuperación. Breve vista de las líneas de intercept sin leer todo el código. | Abrir capturas 04 y 05; mostrar `times: 1` y alias `failure` en el spec. |
+| 2:08-2:25 | “También corro las pruebas al revés para demostrar que no dependen entre sí. Uso selectores estables y espero respuestas de red, sin pausas fijas.” | Resultado inverso y tabla de pruebas pasadas. | Ejecutar `npm run test:e2e:reverse` antes o durante la grabación; mostrar su resultado auténtico. |
+| 2:25-2:45 | “En GitHub Actions se instalan las dependencias y se ejecuta la misma comprobación con cada cambio. Esta es la ejecución exitosa. En el repositorio dejo el README, el PDF y las evidencias.” | Ejecución real en verde, pasos y artifact. | Abrir el enlace exacto de Actions. Mostrar carpeta `entrega/` y terminar. |
+
+Después de grabar: subir el video a una ubicación accesible para el docente, poner su enlace en `entrega/enlaces.json`, regenerar el PDF con `python entrega/generar_pdf.py` y subir los cambios. No presentar los videos sin narración de Cypress como si fueran este video demostrativo.

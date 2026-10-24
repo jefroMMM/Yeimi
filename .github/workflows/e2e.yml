@@ -1,0 +1,44 @@
+name: Hotel Aurora - Cypress E2E
+on: [push, pull_request]
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.2'
+          cache: npm
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Verificar TypeScript y API real
+        run: npm run typecheck && npm run test:api
+      - name: Preparar SQLite de pruebas
+        run: npm run db:seed:test
+      - name: Cypress - orden normal
+        run: npm run test:e2e
+      - name: Cypress - orden inverso
+        run: npm run test:e2e:reverse
+      - name: Resumen de resultados
+        if: always()
+        run: |
+          echo '## Hotel Aurora - resultados reales' >> "$GITHUB_STEP_SUMMARY"
+          for file in entrega/evidencias/cypress-*.json; do
+            if [ -f "$file" ]; then
+              echo '```json' >> "$GITHUB_STEP_SUMMARY"
+              cat "$file" >> "$GITHUB_STEP_SUMMARY"
+              echo '```' >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+      - name: Evidencias de ejecución
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotel-aurora-evidencias
+          path: |
+            cypress/screenshots/
+            cypress/videos/
+            entrega/evidencias/*.json
+          if-no-files-found: warn
+          retention-days: 14
