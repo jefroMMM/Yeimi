@@ -63,7 +63,7 @@ else:
 para('Apoyo declarado: ChatGPT y Codex para desarrollo, pruebas y documentación. El estudiante debe revisar y explicar la solución.', y, 11)
 c.showPage()
 
-base('Arquitectura y datos', 'HTML / CSS / JavaScript → Express → SQLite')
+base('Arquitectura y datos', 'HTML / CSS / JavaScript -> Express -> SQLite')
 y = para('<b>Componentes reales.</b> La interfaz llama a una API REST. El servidor valida datos, obtiene la tarifa de la habitación y calcula noches y total. Genera un UUID y lo inserta con consultas preparadas.', H-110)
 y = para('<b>Sin reservas duplicadas.</b> Se comprueban intervalos superpuestos dentro de una transacción BEGIN IMMEDIATE. Un trigger agrega una segunda protección. Las reservas contiguas se permiten; las habitaciones fuera de servicio se rechazan.', y)
 y = para('<b>Reinicio antes de cada prueba.</b> beforeEach verifica el modo test y llama a POST /api/test/reset. Una transacción borra reservas y carga las mismas tres habitaciones. El endpoint solo existe al arrancar con --test.', y)
@@ -76,16 +76,16 @@ shot('02-reserva-exitosa.png', 'Recorrido 1 · Reserva persistida', 'HTTP 201, i
 shot('03-validacion-fechas.png', 'Recorrido 2 · Validación', 'Salida anterior a la entrada: mensaje visible, cero POST de creación y cero reservas nuevas.')
 shot('04-error-500.png', 'Recorrido 3 · Error controlado', 'cy.intercept simula HTTP 500 una sola vez; las fechas, los huéspedes y el total se conservan.')
 shot('05-recuperacion-exitosa.png', 'Recorrido 3 · Recuperación', 'El segundo intento usa la API real y guarda la reserva con un nuevo identificador.')
-shot('06-resultado-cypress.png', 'Resultados de Cypress', 'Captura de resultados reales. Los archivos JSON originales acompañan esta entrega.')
+shot('06-resultado-cypress.jpg', 'Resultados de Cypress', 'Informe de resultados reales. Los archivos JSON originales acompañan esta entrega.')
 if LINKS.get('actions_url'):
-    shot('07-github-actions.png', 'Integración continua · GitHub Actions', 'Ejecución exitosa verificada en GitHub; enlace directo en la primera página.')
+    shot('07-github-actions.jpg', 'Integración continua · GitHub Actions', 'Ejecución exitosa verificada en GitHub; enlace directo en la primera página.')
 
 base('Independencia y estabilidad', 'Sin pausas fijas ni dependencia del orden de ejecución')
 y = H-110
 for mode in ['normal', 'inverso']:
     data = json.loads((ROOT / 'evidencias' / f'cypress-{mode}.json').read_text(encoding='utf-8'))
     results = data['results']
-    y = para(f'<b>Orden {mode}.</b> ' + ' → '.join(r['spec'] for r in results) + f".<br/>Resultado real: {sum(r['passed'] for r in results)} aprobadas, {sum(r['failed'] for r in results)} fallidas. Registro UTC: {data['generatedAt']}", y, 12)
+    y = para(f'<b>Orden {mode}.</b> ' + ' -> '.join(r['spec'] for r in results) + f".<br/>Resultado real: {sum(r['passed'] for r in results)} aprobadas, {sum(r['failed'] for r in results)} fallidas. Registro UTC: {data['generatedAt']}", y, 12)
 y = para('Cada prueba parte del mismo seed y usa fechas relativas futuras. Los selectores data-cy son independientes de la presentación. Las aserciones esperan condiciones y los alias esperan respuestas de red: @rooms, @create, @failure y @retry. No se usa cy.wait con tiempos numéricos.', y)
 y = para('El workflow instala dependencias con npm ci, valida TypeScript y API, prepara SQLite y ejecuta los dos órdenes. Conserva capturas, videos y registros como artifacts incluso ante fallos. Los videos automáticos de Cypress no sustituyen el video narrado del estudiante.', y)
 para('Para actualizar esta entrega: modificar entrega/enlaces.json y volver a ejecutar el generador. Guion de 2:45 disponible en entrega/guion_video.md.', y, 12)

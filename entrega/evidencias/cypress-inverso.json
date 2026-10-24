@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-10-24T00:36:03.092Z",
+  "results": [
+    {
+      "spec": "03-recuperacion",
+      "passed": 1,
+      "failed": 0,
+      "status": "passed",
+      "started": "2026-10-24T00:35:26.621Z",
+      "ended": "2026-10-24T00:35:29.976Z"
+    },
+    {
+      "spec": "02-validacion",
+      "passed": 1,
+      "failed": 0,
+      "status": "passed",
+      "started": "2026-10-24T00:35:42.927Z",
+      "ended": "2026-10-24T00:35:45.197Z"
+    },
+    {
+      "spec": "01-reserva",
+      "passed": 1,
+      "failed": 0,
+      "status": "passed",
+      "started": "2026-10-24T00:35:58.317Z",
+      "ended": "2026-10-24T00:36:01.358Z"
+    }
+  ]
+}

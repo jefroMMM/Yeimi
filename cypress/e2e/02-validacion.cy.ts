@@ -11,7 +11,7 @@ describe('Recorrido 2: validación', () => {
     get('check-in').type(range.checkOut); get('check-out').type(range.checkIn);
     get('confirm').click();
     get('message').should('contain.text', 'La salida debe ser posterior');
-    cy.screenshot('03-validacion-fechas', { capture: 'fullPage' });
+    get('layout').screenshot('03-validacion-fechas', { capture: 'fullPage' });
     cy.get('@postSpy').should('not.have.been.called');
     cy.request('/api/reservations').its('body').should('deep.equal', []);
   });

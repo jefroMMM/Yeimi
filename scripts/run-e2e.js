@@ -8,8 +8,9 @@ if (reverse) specs.reverse();
   // Una ejecución por archivo garantiza el orden; cada spec se reinicia por sí mismo.
   for (const spec of specs) {
     const result = await cypress.run({ spec: `cypress/e2e/${spec}.cy.ts`, browser: 'electron', config: { trashAssetsBeforeRuns: false } });
-    results.push({ spec, passed: result.totalPassed || 0, failed: result.totalFailed || 0, status: result.status === 'failed' || result.totalFailed ? 'failed' : 'passed', started: result.startedTestsAt, ended: result.endedTestsAt });
-    if (result.status === 'failed' || result.totalFailed) process.exitCode = 1;
+    const success = result.totalTests === 1 && result.totalPassed === 1 && result.totalFailed === 0;
+    results.push({ spec, passed: result.totalPassed || 0, failed: result.totalFailed || 0, status: success ? 'passed' : 'failed', started: result.startedTestsAt, ended: result.endedTestsAt });
+    if (!success) process.exitCode = 1;
   }
   fs.mkdirSync('entrega/evidencias', { recursive: true });
   fs.writeFileSync(`entrega/evidencias/cypress-${reverse ? 'inverso' : 'normal'}.json`, JSON.stringify({ generatedAt: new Date().toISOString(), results }, null, 2));

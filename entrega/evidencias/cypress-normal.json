@@ -1,26 +1,29 @@
 {
-  "generatedAt": "2026-10-24T00:34:33.576Z",
+  "generatedAt": "2026-10-24T00:38:28.440Z",
   "results": [
     {
       "spec": "01-reserva",
       "passed": 1,
       "failed": 0,
-      "started": "2026-10-24T00:33:58.559Z",
-      "ended": "2026-10-24T00:34:01.129Z"
+      "status": "passed",
+      "started": "2026-10-24T00:37:40.276Z",
+      "ended": "2026-10-24T00:37:43.270Z"
     },
     {
       "spec": "02-validacion",
       "passed": 1,
       "failed": 0,
-      "started": "2026-10-24T00:34:13.942Z",
-      "ended": "2026-10-24T00:34:15.992Z"
+      "status": "passed",
+      "started": "2026-10-24T00:38:07.873Z",
+      "ended": "2026-10-24T00:38:10.152Z"
     },
     {
       "spec": "03-recuperacion",
       "passed": 1,
       "failed": 0,
-      "started": "2026-10-24T00:34:28.524Z",
-      "ended": "2026-10-24T00:34:31.981Z"
+      "status": "passed",
+      "started": "2026-10-24T00:38:23.783Z",
+      "ended": "2026-10-24T00:38:26.822Z"
     }
   ]
 }

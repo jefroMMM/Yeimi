@@ -14,7 +14,7 @@ async function main() {
       await delay(100); // Sondeo de disponibilidad del servidor; no es una espera Cypress.
     }
     const runner = spawn(process.execPath, ['scripts/run-e2e.js', ...process.argv.slice(2)], { stdio: 'inherit' });
-    const [code] = await once(runner, 'exit'); process.exitCode = code || 0;
+    const [code] = await once(runner, 'exit'); process.exitCode = code === 0 ? 0 : 1;
   } finally { if (server.exitCode === null) { server.kill(); await once(server, 'exit'); } }
 }
 main().catch(error => { console.error(error.message); process.exitCode = 1; });

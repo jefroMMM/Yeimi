@@ -19,10 +19,10 @@ describe('Recorrido 3: fallo controlado y recuperación', () => {
     get('selection').should('contain.text', 'Brisa del amanecer');
     get('total').should('have.text', 'US$255.00');
     cy.request('/api/reservations').its('body').should('deep.equal', []);
-    cy.screenshot('04-error-500', { capture: 'fullPage' });
+    get('layout').screenshot('04-error-500', { capture: 'fullPage' });
     cy.intercept('POST', '/api/reservations').as('retry');
     get('confirm').click(); cy.wait('@retry').its('response.statusCode').should('eq', 201);
     get('success').should('be.visible'); persisted(expected);
-    cy.screenshot('05-recuperacion-exitosa', { capture: 'fullPage' });
+    get('layout').screenshot('05-recuperacion-exitosa', { capture: 'fullPage' });
   });
 });
