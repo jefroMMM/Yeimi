@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-24T00:41:16.693Z",
+  "databases": [
+    {
+      "file": "hotel.sqlite",
+      "integrity": {
+        "integrity_check": "ok"
+      },
+      "rows": [
+        {
+          "id": "AUR-65633619-8d08-4392-89c7-9e5588544026",
+          "roomId": 1,
+          "checkIn": "2026-12-10",
+          "checkOut": "2026-12-13",
+          "guests": 2,
+          "nights": 3,
+          "total": 255
+        }
+      ]
+    },
+    {
+      "file": "hotel-test.sqlite",
+      "integrity": {
+        "integrity_check": "ok"
+      },
+      "rows": [
+        {
+          "id": "AUR-b5297581-c0d6-4ae8-9234-7022ed3d5e47",
+          "roomId": 1,
+          "checkIn": "2026-12-23",
+          "checkOut": "2026-12-26",
+          "guests": 2,
+          "nights": 3,
+          "total": 255
+        },
+        {
+          "id": "AUR-b3b26330-b4f2-4598-aa44-321e2e02e703",
+          "roomId": 1,
+          "checkIn": "2026-12-26",
+          "checkOut": "2026-12-27",
+          "guests": 2,
+          "nights": 1,
+          "total": 85
+        }
+      ]
+    }
+  ]
+}
